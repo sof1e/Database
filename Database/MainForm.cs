@@ -3,16 +3,18 @@ using System.Data;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
+
 namespace Database
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {   //рядок для підключення БД
-        public static readonly string connectionString = "server=localhost;database=sofiia_20variant;uid=root;pwd=Cjyz964brc_;";
+        public static readonly string connectionString = "server=localhost;database=sofiia_20variant;uid=root;pwd=qwerty1234567;";
         //клас виконує з'єднання з БД та запит до неї
         public static readonly MySqlConnection database = new MySqlConnection(connectionString);
         //для зв'язку БД та додатку. Дата Адаптер дозволяє нам передати дані з бази даних до додатку
         private MySqlDataAdapter dataAdapter = new MySqlDataAdapter();
-        public Form1()
+
+        public MainForm()
         {
             InitializeComponent();
             //повертаємо розміри для форми
@@ -21,8 +23,9 @@ namespace Database
             //зв'язує dataGridView з bindingSource і завантажує список таблиц из БД в ComboBox
             GetData("show tables;", bindingSourceMySQL, dataGridview);
             FillTablesComboBox();
+           
         }
-
+        
         // Метод для загрузки списка таблиц из БД в ComboBox
         private void FillTablesComboBox()
         {
