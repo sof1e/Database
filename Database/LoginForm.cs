@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI.Common;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -30,13 +31,21 @@ namespace Database
                 try
                 {
                     connection.Open();
-                    int count = Convert.ToInt32(cmd.ExecuteScalar());
-                    if (count > 0)
+                    object result = cmd.ExecuteScalar();
+                    if (result != null)
                     {
-                        // Если пользователь найден, открываем главную форму
-                        MainForm mainForm = new MainForm();
-                        mainForm.Show();
-                        this.Hide(); // Скрываем форму входа
+                        if (txtUsername.Text == "user_role" && txtPassword.Text == "qwerty1234567")
+                        {
+                            UserForm userForm = new UserForm();
+                            userForm.Show();
+                            this.Hide(); // Скрываем форму входа
+                        }
+                        else if (txtUsername.Text == "admin_role" && txtPassword.Text == "qwerty1234567")
+                        {
+                            MainForm mainForm = new MainForm();
+                            mainForm.Show();
+                            this.Hide(); // Скрываем форму входа
+                        }
                     }
                     else
                     {
